@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Rock Paper Scissors Part 2
+  <title>The Psychic Game
   </title>
 </head>
 
@@ -23,10 +23,12 @@
     // Creates an array that lists out all of the options (letters of the alphabet).
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     //initializing computerGuess for later
-    var computerGuess;
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     var wins = 0;
     var losses = 0;
+    var losses2 = 0;
     var guessrem = 9;
+    var guess = [];
     //assign the p elements from html to three seperate variables
     var w = document.getElementById("winz");
     var l = document.getElementById("loz");
@@ -34,39 +36,48 @@
     var g = document.getElementById("guess");
 
     // This function is run whenever the user presses a key.
+
     document.onkeyup = function (event) {
 
       // Determines which key was pressed.
       var userGuess = event.key;
 
+
       if (guessrem < 1) {
-        losses++; guessrem = 9;
-      }
-
-      //Section for evaluating letters vs. letters 
-      if (userGuess == "a") {
-
-        // Randomly chooses a choice from the options array. This is the Computer's guess.
+        losses++;
+        guessrem = 9;
+        guess = [];
         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        if (computerGuess == "a") {
-          wins++; guessrem = 9;
+      }
+
+      else {
+
+        if (computerGuess === userGuess) {
+          wins++;
+          guessrem = 9;
+          guess = [];
+          w.textContent = ("Wins: " + wins);
+          computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         }
+
         else {
+
           guessrem--;
+          guess.push(userGuess);
+          l.textContent = ("Losses: " + losses);
+          r.textContent = ("Your Guesses left: " + guessrem);
+          g.textContent = ("Your Guesses so far: " + guess.join(", "));
+        }
         }
       }
 
 
+    // updates the p elements in the html with the most recent values for wins, losses, and guesses
 
 
+ 
 
-      // updates the p elements in the html with the most recent values for wins, losses, and guesses
-      w.textContent = ("Wins: " + wins);
-      l.textContent = ("Losses: " + losses);
-      g.textContent = ("Your Guesses so far:" + guessrem);
-      g.textContent = ("Your Guesses so far: " + guesses);
 
-    }
   </script>
 
 </body>
