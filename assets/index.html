@@ -22,6 +22,7 @@
 
     // Creates an array that lists out all of the options (letters of the alphabet).
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+   
     //initializing computerGuess for later
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     var wins = 0;
@@ -29,7 +30,8 @@
     var losses2 = 0;
     var guessrem = 9;
     var guess = [];
-    //assign the p elements from html to three seperate variables
+    
+    //assign the p elements from html to four seperate variables
     var w = document.getElementById("winz");
     var l = document.getElementById("loz");
     var r = document.getElementById("guessrem");
@@ -48,6 +50,9 @@
         guessrem = 9;
         guess = [];
         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      if(losses > losses2) {
+        alert("You lost, loser!")
+      }
       }
 
       else {
@@ -70,12 +75,6 @@
         }
         }
       }
-
-
-    // updates the p elements in the html with the most recent values for wins, losses, and guesses
-
-
- 
 
 
   </script>
